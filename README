@@ -1,0 +1,72 @@
+
+
+multilenkmer.py
+
+
+This python script is intended as an extension to the NoPeak software. It is designed to handle NoPeak kmer-lists with kmers of multiple lengths for the generation of sequence logos.
+
+
+
+Input format:
+
+Kmer lists are to be supplied in a textfile, formated as follows:
+
+kmer1 score1
+kmer2 score2
+...   ...
+...   ...
+
+
+Output generated:
+
+- Sequence logo plots (.svg, .jpg)
+- .tex report file
+
+
+
+Usage:
+python3 multilenkmer.py -i <kmerlist file input> -o <output directory> [-MI maximum iterations] [-SC scorecutoff] [-m matchbonus] [-mm mismatchpenalty] [-go gapopeningcost] [-ge gapextensioncost]
+
+
+
+file I/O
+
+-i , --input
+input kmer lists , type=str
+
+-o , --outputdir
+plot and report output directory type=str
+
+
+
+parameters:
+
+-m , --matchbonus
+Alignment match bonus, type=int, default=1
+
+-mm , --mismatchpenalty 
+Alignment mismatch penalty, type=int, default=1
+
+-go , --gapopeningcost
+gap opening cost,type=int, default=100
+
+-ge, --gapextendcost
+gap extension cost, type=int, default=100
+
+-SC, --scorecutoff 
+cutoff for considering/ommitting kmers, type=float, default=1.8
+
+-MI , --maxiter 
+maximum number of iterations per set of parameters, type=int, default=3
+
+
+Python Packages required:
+- sys
+- pandas
+- logomaker
+- matplotlib.pyplot 
+- numpy
+- Bio.pairwise2
+- matplotlib.colors
+- matplotlib.image
+- argparse
