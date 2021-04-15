@@ -345,10 +345,14 @@ def align_cons_kmer(consensusseq,currentkmer,match,mismatch,gapo,gape):
     alignments = pairwise2.align.localmd(consensusseq, currentkmer,match,-mismatch,-100,-100,-gapo,-gape)
 
     # best: alignment with highest score - sort list based on score - reverse - first element is the one with highest score
-    best = sorted(alignments, key=lambda x : x.score,reverse=True)[0]
-    seqB,lst_pos_to_update=best.seqB,[tup[0] for tup in enumerate(best.seqB) if tup[1] != "-"]
+    if len(alignments) > 0:
+        best = sorted(alignments, key=lambda x : x.score,reverse=True)[0]
+        seqB,lst_pos_to_update=best.seqB,[tup[0] for tup in enumerate(best.seqB) if tup[1] != "-"]
 
-    return seqB,lst_pos_to_update,best.score
+        return seqB,lst_pos_to_update,best.score
+
+    else:
+        return "",[],0
 
 def update_pcm_mtx(s,pcm,lst_pos_to_update,bc_increment,mtx,thelinelength):
 
